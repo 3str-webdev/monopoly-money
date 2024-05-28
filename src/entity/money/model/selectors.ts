@@ -1,4 +1,5 @@
-import type { Denomination, MoneyStore } from "./money-store";
+import type { Denomination } from "../types";
+import type { MoneyStore } from "./money-store";
 
 const getMoney = (store: MoneyStore) => {
 	return store.money;
@@ -14,7 +15,7 @@ const getChangeMoneyAction = (store: MoneyStore) => {
 	return store.changeMoney;
 };
 
-export const selectors = {
+export const moneySelectors = {
 	getMoney,
 	getMoneyByDenomination,
 	getChangeMoneyAction,

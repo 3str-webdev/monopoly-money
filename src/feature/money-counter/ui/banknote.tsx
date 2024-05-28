@@ -1,43 +1,35 @@
 import { type Denomination, selectors, useMoneyStore } from "@/entity/money";
-import { enrichmentClickHandler } from "@/shared/lib/enrichment-handler";
-import type { ButtonHTMLAttributes } from "react";
-import { twJoin } from "tailwind-merge";
-import type { CounterStatus } from "../model/counter-status-store";
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
+import type { ButtonHTMLAttributes } from "react";
+import { twJoin } from "tailwind-merge";
+import { useLongPress } from "use-long-press";
+import type { CounterStatus } from "../model/counter-status-store";
+import { getDenominationSymbol } from "../model/get-denomination-symbol";
 
 type BanknoteProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 	denomination: Denomination;
-	status: CounterStatus;
+	status?: CounterStatus;
+	amountOfBanknotes: number;
+	onLongPress?: () => void;
 };
 
 export const Banknote = ({
 	denomination,
 	status,
+	amountOfBanknotes,
 	className,
+	onLongPress = () => {},
 	...props
 }: BanknoteProps) => {
-	const changeMoney = useMoneyStore(selectors.getChangeMoneyAction);
-	const specificMoney = useMoneyStore(
-		selectors.getMoneyByDenomination(denomination),
-	);
+	const bind = useLongPress(onLongPress);
 
-	const denominationSymbol = status === "increment" ? "+" : "-";
-	const isDisables = status === "decrement" && specificMoney === 0;
-
-	const handleClick = enrichmentClickHandler(() => {
-		if (status === "increment") {
-			return changeMoney(denomination, 1);
-		}
-
-		if (specificMoney > 0) {
-			return changeMoney(denomination, -1);
-		}
-	}, props.onClick);
+	const isDisabled = status === "decrement" && amountOfBanknotes === 0;
 
 	return (
 		<Button
 			{...props}
+			{...bind()}
 			variant={"outline"}
 			className={twJoin(
 				"relative",
@@ -46,12 +38,11 @@ export const Banknote = ({
 				"disabled:opacity-50",
 				className,
 			)}
-			onClick={handleClick}
-			disabled={isDisables}
+			disabled={isDisabled || props.disabled}
 		>
-			<Badge className="absolute top-0 right-0">{specificMoney}</Badge>
+			<Badge className="absolute top-0 right-0">{amountOfBanknotes}</Badge>
 			<div className="text-xl">
-				{denominationSymbol}
+				{getDenominationSymbol(status)}
 				{denomination}
 			</div>
 		</Button>

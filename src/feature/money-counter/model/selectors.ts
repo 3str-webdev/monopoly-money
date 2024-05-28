@@ -8,7 +8,7 @@ const getCounterStatusSetter = (store: CounterStatusStore) => {
 	return store.setStatus;
 };
 
-export const selectors = {
+export const counterStatusSelectors = {
 	getCounterStatus,
 	getCounterStatusSetter,
 };
