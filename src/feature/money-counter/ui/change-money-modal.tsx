@@ -54,7 +54,7 @@ export const ChangeMoneyModal = ({
 	return (
 		<Dialog {...props} onOpenChange={onOpenChange}>
 			<DialogContent
-				className={twJoin("w-[80%]", "max-w-[400px]", "rounded-lg")}
+				className={twJoin("w-[95%]", "max-w-[400px]", "rounded-lg")}
 			>
 				<DialogHeader>
 					<DialogTitle>Разменяем денюшки</DialogTitle>
