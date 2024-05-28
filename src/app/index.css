@@ -68,10 +68,42 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border font-comfortaa;
   }
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  @font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-Regular.ttf") format("truetype"),
+      url("/fonts/Comfortaa-Regular.woff") format("woff"),
+      url("/fonts/Comfortaa-Regular.woff2") format("woff2");
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-Medium.ttf") format("truetype"),
+      url("/fonts/Comfortaa-Medium.woff") format("woff"),
+      url("/fonts/Comfortaa-Medium.woff2") format("woff2");
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-SemiBold.ttf") format("truetype"),
+      url("/fonts/Comfortaa-SemiBold.woff") format("woff"),
+      url("/fonts/Comfortaa-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-Bold.ttf") format("truetype"),
+      url("/fonts/Comfortaa-Bold.woff") format("woff"),
+      url("/fonts/Comfortaa-Bold.woff2") format("woff2");
+    font-weight: 700;
   }
 }
