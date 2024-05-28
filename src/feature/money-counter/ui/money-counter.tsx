@@ -68,7 +68,7 @@ export const MoneyCounter = ({
 		for (const denomination of keys<Denomination[]>(
 			changingMoneyState.changingMoney,
 		)) {
-      const deltaAmount = changingMoneyState.changingMoney[denomination];
+			const deltaAmount = changingMoneyState.changingMoney[denomination];
 			changeMoney(denomination, deltaAmount);
 		}
 	};
@@ -99,6 +99,10 @@ export const MoneyCounter = ({
 					const specificMoney = money[denomination];
 
 					const handleLongPress = () => {
+						if (specificMoney === 0) {
+							return;
+						}
+
 						setIsOpenChangeMoneyModal(true);
 						setChangingMoneyState({
 							sum: denomination,
