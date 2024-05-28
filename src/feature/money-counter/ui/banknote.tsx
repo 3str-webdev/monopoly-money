@@ -1,4 +1,4 @@
-import { type Denomination, selectors, useMoneyStore } from "@/entity/money";
+import type { Denomination } from "@/entity/money";
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
 import type { ButtonHTMLAttributes } from "react";
