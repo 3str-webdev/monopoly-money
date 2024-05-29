@@ -18,6 +18,7 @@ import type { ChangingMoneyState } from "../types";
 import { Banknote } from "./banknote";
 import { ChangeMoneyModal } from "./change-money-modal";
 import { keys } from "@/shared/lib/keys";
+import { vibro } from "@/shared/lib/vibro";
 
 type MoneyCounterProps = HTMLAttributes<HTMLElement> & {
 	roundFinishButton: ReactNode;
@@ -100,9 +101,10 @@ export const MoneyCounter = ({
 
 					const handleLongPress = () => {
 						if (specificMoney === 0) {
-							return;
+							return vibro([100, 50, 100]);
 						}
 
+						vibro(100);
 						setIsOpenChangeMoneyModal(true);
 						setChangingMoneyState({
 							sum: denomination,
